@@ -25,6 +25,17 @@ jobs:
         install: false
         start: npm run start:ci
         wait-on: 'http://localhost:3000'
-      
+    - name: Upload screeshots
+      if: failure()
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: screenshots
+        path: web/cypress/screenshots
+    - name: Upload videos
+      if: always()
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: videos
+        path: web/cypress/videos
 
       
